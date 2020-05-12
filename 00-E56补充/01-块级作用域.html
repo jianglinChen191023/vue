@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01-块级作用域</title>
+</head>
+<body>
+
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+
+
+<script>
+  // 变量作用域: 变量在什么范围内是可用
+  // {
+  //   var name = 'why'
+  //   console.log(name)
+  // }
+  //
+  // console.log(name)
+
+  // if的块级: 没有块级作用域引起的问题
+  // var func;
+  // if(true){
+  //   var name = 'why'
+  //
+  //   func = function(){
+  //     console.log(name);
+  //   }
+  //
+  //   // func();
+  // }
+  //
+  // name = 'kobe'
+  //
+  // func();
+
+  var name = 'why'
+
+  // bbb 单独开辟空间,不指向
+  function abc(bbb) {
+    console.log(bbb)
+  }
+
+  abc(name)
+  name = 'kobe'
+
+  // for的块级: 没有块级作用域引起的问题
+  // 为什么毕包可以解决问题: 函数是一个作用域
+  var btns = document.getElementsByTagName('button')
+  for (var i = 0; i < btns.length; i++) {
+    (function (i) {
+      btns[i].addEventListener('click', function () {
+        console.log('第' + i + '个按钮被点击')
+      })
+    })(i)
+  }
+
+
+</script>
+</body>
+</html>
