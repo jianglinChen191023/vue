@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>08-书籍购物车案例</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <table>
+    <thead>
+    <tr>
+      <th v-for="item in names">{{item}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="(items,booksIndex) in books">
+      <td v-for="(value,key) in items">
+        <button v-if="key == 'count'" @click="sunCount(booksIndex)" :disabled="items.count == 1">-</button>
+        <span v-if="key == 'price'">{{value |　showPrice}}</span>
+        <span v-else>{{value}}</span>
+        <button v-if="key == 'count'" @click="addCount(booksIndex)">+</button>
+      </td>
+      <td>
+        <button @click="removeBook(booksIndex)">移除</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h2>总价格:　{{totalPrice | showPrice}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

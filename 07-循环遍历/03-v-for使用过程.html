@@ -8,8 +8,10 @@
 <div id="app">
   <h2>{{message}}</h2>
   <ul>
+    <!-- :key="item" : 确保数据唯一性 -->
     <li v-for="(item,index) in letters" :key="item">{{item}} {{index}}</li>
   </ul>
+  <button @click="btnClick">按钮</button>
 </div>
 
 <script src="../js/vue.js"></script>
@@ -18,9 +20,10 @@
     el: '#app'
     , data: {
       message: '你好',
-      letters: ['A','B','C','D','E']
+      letters: ['A', 'B', 'C', 'D', 'F', 'E']
     }
   })
+
 </script>
 </body>
 </html>
