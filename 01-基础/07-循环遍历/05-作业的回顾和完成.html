@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05-作业的回顾和完成</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<!--　初始化首位是红色, 点击那个元素让它变成红色　-->
+<div id="app">
+  <h2 v-for="(item,index) in movies" :class="{active : count == index}" @click="countClick(index)">{{item}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      movies: ['AA', 'BB', 'CC', 'DD'],
+      count: 0
+    },
+    methods: {
+      countClick(index) {
+        this.count = index;
+      }
+    }
+  })
+</script>
+</body>
+</html>

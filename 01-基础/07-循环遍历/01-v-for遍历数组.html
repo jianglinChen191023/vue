@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01-v-for遍历数组</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+
+  普通遍历 v-for="item in names"
+  <ul>
+    <li v-for="item in names">{{item}}</li>
+  </ul>
+
+  在遍历的过程中, 获取索引值 v-for="(item, index) in names"
+  <ul>
+    <li v-for="(item, index) in names">{{item}} {{index}}</li>
+  </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      names: ['why', 'kobe', 'james', 'curry']
+    }
+  })
+</script>
+</body>
+</html>

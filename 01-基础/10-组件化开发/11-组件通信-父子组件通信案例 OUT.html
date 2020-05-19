@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>11-组件通信-父子组件通信案例</title>
+</head>
+<body>
+<div id="app">
+  父data: {{num1}}<br/>
+  父data: {{num2}}<br/><br/>
+  <cpn :number1="num1" :number2="num2" @number1_input="number1" @number2_input="number2"></cpn>
+</div>
+
+<!-- 在子组件中 对number1做一个双向绑定-->
+<template id="cpn">
+  <div>
+    <h2>num1</h2>
+    子props: {{number1}}<br/>
+    传到父组件中
+    <input type="text" @input="number1_input" :value="number1"><br/><br/>
+    子data: {{dnumber1}}<br/>
+
+    结合双向绑定案例 - 画图
+    <input type="text" v-model="dnumber1" @input="number1_input"><br/>
+    <br/>
+
+    <h2>num2</h2>
+    子props: {{number2}}<br/>
+    传到父组件中
+    <input type="text" @input="number2_input" :value="number2"><br/><br/>
+    子data: {{dnumber2}}<br/>
+    <input type="text" v-model="dnumber2"><br/>
+
+    <button @click="changeNum1">改变Number1</button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      num1: 1,
+      num2: 2
+    },
+    methods: {
+      number1(value) {
+        this.num1 = value;
+      },
+      number2(value) {
+        this.num2 = value;
+      }
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        props: {
+          number1: [String, Number],
+          number2: [String, Number]
+        },
+        methods: {
+          changeNum1() {
+            this.number1 = 3242;
+          },
+          number1_input(event) {
+            this.$emit('number1_input', event.target.value);
+          },
+          number2_input(event) {
+            this.dnumber1 = event.target.value;
+
+            this.dnumber2 = event.target.value * 100;
+            this.$emit('number1_input', event.target.value);
+            this.$emit('number2_input', event.target.value);
+          }
+        },
+        data() {
+          return {
+            dnumber1: this.number1,
+            dnumber2: this.number2
+          }
+        },
+        watch: {
+          number1(newValue) {
+            this.$emit('number1_input', newValue);
+          },
+          number2(newValue) {
+            this.$emit('number2_input', newValue);
+          }
+        }
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

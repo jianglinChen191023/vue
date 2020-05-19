@@ -1,0 +1,10 @@
+-- node版本
+node -v
+-- 全局安装webpack
+npm install webpack@3.6.0 -g
+局部安装
+cd 目录
+npm install webpack@3.6.0 --save-dev
+
+
+

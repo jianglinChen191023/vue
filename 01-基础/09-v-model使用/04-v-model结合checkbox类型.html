@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-v-model结合checkbox类型</title>
+</head>
+<body>
+<div id="app">
+  <!-- 1.checkbox单选框 -->
+  <span style="font-size: 12px;color: #41B883" v-text="code"></span><br/>
+  <label for="agree">
+    <input type="checkbox" id="agree" v-model="isAgree">同意协议
+  </label><br/><br/>
+
+  <span style="font-size: 12px;color: #41B883" v-text="code2"></span><br/>
+  <button :disabled="!isAgree">
+    下一步
+  </button>
+  <br/><br/>
+  <h2>您选择的是: {{isAgree}}</h2>
+
+
+  <!-- 2.checkbox多选框 -->
+  <label for="basketball">
+    <input type="checkbox" id="basketball" value="篮球" v-model="hobbies">篮球
+  </label>
+
+  <label for="football">
+    <input type="checkbox" id="football" value="足球" v-model="hobbies">足球
+  </label>
+
+  <label for="pingpong">
+    <input type="checkbox" id="pingpong" value="乒乓球" v-model="hobbies">乒乓球
+  </label>
+
+  <label for="badminton">
+    <input type="checkbox" id="badminton" value="羽毛球" v-model="hobbies">羽毛球
+  </label>
+
+  <h2>您的爱好是: {{hobbies}}</h2>
+
+  <!-- input中的值绑定 -->
+  <span style="color: #41B883;size: 12px" v-text="code3"></span><br/>
+  <label :for="item" v-for="item in listHobbies">
+    <input type="checkbox" :id="item" :value="item" v-model="hobbies">{{item}}
+  </label>
+
+  <h2>您的爱好是: {{hobbies}}</h2>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      isAgree: false,
+      code: 'checkbox单选框: &lt;&gt; <label for="agree">\n' +
+          '    <input type="checkbox" id="agree" v-model="isAgree">同意协议\n' +
+          '  </label>',
+      code2: '<button :disabled="!isAgree">下一步</button>',
+      code3: 'input中的值绑定: <label :for="item" v-for="item in listHobbies">\n' +
+          '    <input type="checkbox" :id="item" :value="item" v-model="hobbies">{{item}}\n' +
+          '  </label>',
+      hobbies: [],
+      listHobbies: [
+        '篮球',
+        '足球',
+        '乒乓球',
+        '羽毛球',
+        '是个球啊'
+      ]
+    }
+  })
+</script>
+
+</body>
+</html>

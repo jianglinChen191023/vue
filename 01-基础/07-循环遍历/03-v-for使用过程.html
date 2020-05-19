@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>03-v-for使用过程</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <ul>
+    <!-- :key="item" : 确保数据唯一性 -->
+    <li v-for="(item,index) in letters" :key="item">{{item}} {{index}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      letters: ['A', 'B', 'C', 'D', 'F', 'E']
+    }
+  })
+
+</script>
+</body>
+</html>

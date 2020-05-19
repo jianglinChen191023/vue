@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-计算属性和methods的对比</title>
+</head>
+<body>
+<div id="app">
+  <!-- 直接拼接: 语法过于繁琐 -->
+  <h2>{{firstName}} {{lastName}}</h2>
+
+  <!-- 通过定义methods: 计算多次 -->
+  <h2>{{getFillName()}}</h2>
+  <h2>{{getFillName()}}</h2>
+  <h2>{{getFillName()}}</h2>
+  <h2>{{getFillName()}}</h2>
+
+  <!-- 通过computed: 计算一次(数据无变化直接调用缓存) -->
+  <h2>{{fillName}}</h2>
+  <h2>{{fillName}}</h2>
+  <h2>{{fillName}}</h2>
+  <h2>{{fillName}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      firstName: 'kobe',
+      lastName: 'Bryant'
+    },
+    computed: {
+      fillName: function () {
+        console.log('gillName')
+        return this.firstName + ' ' + this.lastName
+      }
+    },
+    methods: {
+      getFillName: function () {
+        console.log('getFillName')
+        return this.firstName + ' ' + this.lastName
+      }
+    }
+  })
+</script>
+</body>
+</html>

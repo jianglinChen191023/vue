@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-v-model的原理</title>
+</head>
+<body>
+<!-- v-model: 双向绑定 -->
+<div id="app">
+
+  <span style="font-size: 20px;color: #41B883" v-text="model"></span><br/>
+  <input type="text" v-model="message"><br/><br/>
+
+  <span style="font-size: 20px;color: #41B883" v-text="model2"></span><br/>
+  <input type="text" :value="message" @input="messageChange"><br/><br/>
+
+  <span style="font-size: 20px;color: #41B883" v-text="model3"></span><br/>
+  <input type="text" :value="message" @input="message = $event.target.value">
+
+  <h2>{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      model: '<input type="text" v-model="message">',
+      model2: '<input type="text" :value="message" @input="messageChange"> => script: messageChange(event) {\n' +
+          '        this.message = event.target.value;\n' +
+          '      }',
+      model3: '<input type="text" :value="message" @input="message = $event.target.value">'
+    },
+    methods: {
+      messageChange(event) {
+        this.message = event.target.value;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

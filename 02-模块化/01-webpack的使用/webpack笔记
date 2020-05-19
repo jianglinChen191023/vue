@@ -1,0 +1,36 @@
+// 打包
+webpack ./src/main.js ./dist/bundle.js
+// 动态的获取路径
+// const path = require('path')
+npm init
+    -- package name: (02-webpack的配置): 起一个包的名字(meetwebpack)
+    -- 回车...
+    -- entry point: (webpack.config.js) index.js
+    -- 回车...
+    -- 生成 package.json 文件 -完成
+    // 配置 package.json 文件
+    /*
+    {
+      "name": "meetwebpack",
+      "version": "1.0.0",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack"
+      },
+      "author": "",
+      "license": "ISC",
+      "description": ""
+    }
+    */
+    -- 执行 npm run build
+// 局部依赖安装 - 开发依赖
+npm install webpack@3.6.0 --save-dev
+    // 使用局部
+    -- node_modules/.bin/webpack
+
+
+// build的指令: npm run build
+// 在package.json中的scripts的脚步执行时,会按照一定的顺序寻找命令对应的位置
+    // 1. 首先,寻找 node_modules/.bin 路径中对应的命令
+    // 2. 全局中寻找

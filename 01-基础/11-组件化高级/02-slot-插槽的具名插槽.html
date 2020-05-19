@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-slot-插槽的具名插槽</title>
+</head>
+<body>
+
+<div id="app">
+<!--  <cpn><span slot="left" style="color: #41B883">哈哈哈</span></cpn>-->
+<!--  <cpn><i slot="center" style="color: #41B883">呵呵呵</i></cpn>-->
+  <cpn>
+    <div slot="right">
+      <i style="color: #41B883">kdlsajf</i><br/>
+      <span style="color: #41B883">jdasklfj</span>
+    </div>
+  </cpn>
+  <!--  <cpn>23423</cpn>-->
+</div>
+
+<template id="cpn">
+  <div>
+    <slot name="left">
+      <button>按钮</button>
+    </slot>
+    <slot name="center">
+      <button>按钮</button>
+    </slot>
+    <slot name="right">
+      <button>按钮</button>
+    </slot>
+    <!--    <slot><button>按钮</button></slot>-->
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn: {
+        template: '#cpn'
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

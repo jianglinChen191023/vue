@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>08-组件通信-父组件向子组件传递数据</title>
+</head>
+<body>
+<div id="app">
+  <nap :cverification="verification" :cmessage_required="message_required" :cmessage2="message2"
+       :cmessage="message"></nap>
+</div>
+
+<template id="nap">
+  <div>
+    <h1>{{cmessage}}</h1>
+    <h1>{{cmessage2}}</h1>
+    <h2>{{cmessage_default}}</h2>
+    <h3>{{cmessage_required}}</h3>
+    <h4>{{cmovies}}</h4>
+    <h5>{{cverification}}</h5>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  // 建立模板
+  const nap = Vue.component('nap', {
+    template: '#nap',
+    /* 注意: 属性小写-驼峰标识会报错 */
+    // 基本通信
+    props: {
+      // 基础类型检查
+      cmessage: String,
+      // 多个可能类型检查
+      cmessage2: [String, Number],
+      // 默认值
+      cmessage_default: {
+        type: String,
+        default: 'test默认值'
+      },
+      // 提供默认值,以及必须传递
+      cmessage_required: {
+        type: String,
+        default: '默认',
+        required: true
+      },
+      // 类型是对象或者数组
+      cmovies: {
+        type: Array,
+        default() {
+          return ['类型是对象或者数组, 默认值使用函数返回', '猫和老鼠', '星际穿越']
+        }
+      },
+      // 自定义验证函数
+      cverification: {
+        validator: function (value) {
+          // 这个值必须匹配下列字符串的一个
+          return ['海王', '猫和老鼠', '迪迦欧特曼', '这个值必须匹配下列字符串的一个'].indexOf(value) !== -1
+        }
+      }
+    }
+  })
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '基础类型检查',
+      message2: '多个可能类型检查',
+      message_required: '必须传递',
+      verification: '这个值必须匹配下列字符串的一个'
+    },
+    templates: {
+      nap
+    }
+  })
+</script>
+
+</body>
+</html>
