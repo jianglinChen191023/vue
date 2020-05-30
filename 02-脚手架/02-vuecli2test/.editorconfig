@@ -1,0 +1,16 @@
+# 代码规范
+root = true
+
+# 编码
+[*]
+charset = utf-8
+# 缩进样式
+indent_style = space
+# 缩进尺寸
+indent_size = 2
+# 行结尾
+end_of_line = lf
+# 插入最终换行符
+insert_final_newline = true
+# 清空尾部空格
+trim_trailing_whitespace = true
